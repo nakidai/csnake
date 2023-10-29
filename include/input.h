@@ -9,6 +9,6 @@ typedef struct input_args_t
     bool *alive;
 } InputArgs;
 
-void input(void *vargp);
+void *input(void *vargp);
 
 #endif /* __INPUT_H__ */

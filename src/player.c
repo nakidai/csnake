@@ -54,5 +54,8 @@ void playerDoTick(Player *player, bool food_collision)
         PlayerNode *new_tail = player->tail->next;
         free(player->tail);
         player->tail = new_tail;
+    } else
+    {
+        ++player->score;
     }
 }

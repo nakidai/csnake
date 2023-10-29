@@ -1,5 +1,6 @@
 #include "input.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include <unistd.h>
 #include <termios.h>
 
@@ -21,7 +22,7 @@ char getch(void)
     return buf;
 }
 
-void input(void *vargp)
+void *input(void *vargp)
 {
     char *out = ((InputArgs *)vargp)->out;
     bool *alive = ((InputArgs *)vargp)->alive;
@@ -30,4 +31,5 @@ void input(void *vargp)
     {
         *out = getch();
     }
+    return NULL;
 }
