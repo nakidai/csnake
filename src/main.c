@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include <pthread.h>
-#include <unistd.h>
+#include <threads.h>
 #include <time.h>
 
 #include "input.h"
@@ -33,7 +32,7 @@ int main(int argc, char **argv)
     Player *player = playerCreate(DOWN, 0, 0, 0);
     Screen *screen = screenCreate(10, 10, ' ');
     PlayerNode *node;
-    pthread_t input_thread;
+    thrd_t input_thread;
     int head_x, head_y;
     Food food = generateFood(player);
 
@@ -41,7 +40,7 @@ int main(int argc, char **argv)
     char *key = malloc(sizeof(char)); *key = 0;
     InputArgs input_args = (InputArgs){ key, running };
 
-    pthread_create(&input_thread, NULL, input, &input_args);
+    thrd_create(&input_thread, input, &input_args);
     while (*running)
     {
         switch (*key)
@@ -56,7 +55,6 @@ int main(int argc, char **argv)
                 player->direction = DOWN; break;
             case 'a':
                 player->direction = LEFT; break;
-            sleep(1);
         }
 
         if (playerDoTick(player, food))
@@ -79,7 +77,7 @@ int main(int argc, char **argv)
         *screenGetPoint(screen, food.x, food.y) = '@';
         screenShow(screen);
 
-        sleep(1);
+        thrd_sleep(&(struct timespec){.tv_sec=1}, NULL);
     }
     return 0;
 }
