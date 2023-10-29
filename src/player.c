@@ -6,14 +6,14 @@ Player *playerCreate(Direction direction, int x, int y, int score)
     Player *player = (Player *)malloc(sizeof(Player));
     PlayerNode *head = (PlayerNode *)malloc(sizeof(PlayerNode));
 
+    head->x = x;
+    head->y = y;
+    head->next = NULL;
+
     player->tail = head;
     player->head = head;
     player->score = score;
     player->direction = direction;
-
-    head->x = x;
-    head->y = y;
-    head->next = NULL;
 }
 
 void playerFree(Player *player)
