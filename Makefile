@@ -22,6 +22,6 @@ $(OUT): obj $(OBJ)
 	$(CC) -o $@ $(OBJ) $(LDFLAGS)
 
 clean:
-	$(RM) $(OUT) $(OBJDIR)/*
+	$(RM) $(OUT) config.mk $(OBJDIR)/*
 
 .PHONY: default clean

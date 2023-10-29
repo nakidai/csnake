@@ -1,0 +1,19 @@
+#!/bin/sh
+
+CC=${CC:-cc}
+RM=${RM:-rm -f}
+CFLAGS=${CFLAGS:-}
+LDFLAGS=${LDFLAGS:-}
+OUT=${OUT:-game}
+
+echo "Compiler: $CC"
+echo "Remove: $RM"
+echo "CFLAGS: $CFLAGS"
+echo "LDFLAGS: $LDFLAGS"
+echo "Out file: $OUT"
+
+echo "CC = $CC
+RM = $RM
+CFLAGS = $CFLAGS
+LDFLAGS = $LDFLAGS
+OUT = $OUT" > config.mk
