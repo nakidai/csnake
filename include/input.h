@@ -7,7 +7,7 @@ typedef struct input_args_t
 {
     char *out;
     bool *alive;
-} inputArgs;
+} InputArgs;
 
 void input(void *vargp);
 

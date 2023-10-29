@@ -23,8 +23,8 @@ char getch(void)
 
 void input(void *vargp)
 {
-    char *out = ((inputArgs *)vargp)->out;
-    bool *alive = ((inputArgs *)vargp)->alive;
+    char *out = ((InputArgs *)vargp)->out;
+    bool *alive = ((InputArgs *)vargp)->alive;
 
     while (*alive)
     {
