@@ -15,6 +15,8 @@ Player *playerCreate(Direction direction, int x, int y, int score)
     player->head = head;
     player->score = score;
     player->direction = direction;
+
+    return player;
 }
 
 void playerFree(Player *player)

@@ -44,7 +44,7 @@ void screenShow(Screen *screen)
     }
 }
 
-void screenSet(Screen *screen, char fill_value)
+void screenSet(Screen *screen, Point fill_value)
 {
     memset(screen->screen, fill_value, screen->width * screen->height * sizeof(char));
 }
