@@ -43,3 +43,8 @@ void screenShow(Screen *screen)
         putchar('\n');
     }
 }
+
+void screenSet(Screen *screen, char fill_value)
+{
+    memset(screen->screen, fill_value, screen->width * screen->height * sizeof(char));
+}

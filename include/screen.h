@@ -14,5 +14,6 @@ void screenFree(Screen *screen);
 
 Point *screenGetPoint(Screen *screen, int x, int y);
 void screenShow(Screen *screen);
+void screenSet(Screen *screen, char fill_value);
 
 #endif /* __SCREEN_H__ */

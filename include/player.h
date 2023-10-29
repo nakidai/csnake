@@ -2,6 +2,7 @@
 #define __PLAYER_H__
 
 #include <stdbool.h>
+#include "food.h"
 
 #define UP    0
 #define RIGHT 1
@@ -28,6 +29,8 @@ struct player_t
 Player *playerCreate(Direction direction, int x, int y, int score);
 void playerFree(Player *player);
 
-void playerDoTick(Player *player, bool food_collision);
+bool playerCheckSelfCollision(Player *player);
+bool playerCheckFoodCollision(Player *player, Food food);
+bool playerDoTick(Player *player, Food food);
 
 #endif /* __PLAYER_H__ */
