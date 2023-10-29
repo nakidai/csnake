@@ -7,7 +7,7 @@ LD  = ld
 RM  = rm -f
 SRCDIR = src
 OBJDIR = obj
-SRC = main.c screen.c
+SRC = main.c screen.c input.c
 OBJ = $(addprefix $(OBJDIR)/,$(SRC:.c=.o))
 
 default: $(OUT)
