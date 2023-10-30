@@ -1,3 +1,5 @@
+include config/config.mk
+
 OUT = game
 CFLAGS =
 LDFLAGS =
@@ -22,6 +24,6 @@ $(OUT): obj $(OBJ)
 	$(CC) -o $@ $(OBJ) $(LDFLAGS)
 
 clean:
-	$(RM) $(OUT) config.mk $(OBJDIR)/*
+	$(RM) $(OUT) config/* $(OBJDIR)/*
 
 .PHONY: default clean

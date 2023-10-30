@@ -5,6 +5,7 @@ RM=${RM:-rm -f}
 CFLAGS=${CFLAGS:-}
 LDFLAGS=${LDFLAGS:-}
 OUT=${OUT:-game}
+SIZE=${SIZE:-10}
 
 echo "Compiler: $CC"
 echo "Remove: $RM"
@@ -16,4 +17,4 @@ echo "CC = $CC
 RM = $RM
 CFLAGS = $CFLAGS
 LDFLAGS = $LDFLAGS
-OUT = $OUT" > config.mk
+OUT = $OUT" > config/config.mk
