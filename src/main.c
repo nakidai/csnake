@@ -26,6 +26,11 @@ Food generateFood(Player *player)
     return food;
 }
 
+void resetCoordinates(void)
+{
+    printf("\033[0;0H");
+}
+
 int main(int argc, char **argv)
 {
     srandom(time(NULL));
@@ -76,6 +81,7 @@ int main(int argc, char **argv)
         screenSet(screen, ' ');
         drawPlayer(player, screen);
         *screenGetPoint(screen, food.x, food.y) = '@';
+        resetCoordinates();
         screenShow(screen);
         for (i = 0; i < 20; ++i) putchar('-');
         printf("\nScore: %d\n", player->score);
