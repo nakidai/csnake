@@ -84,7 +84,7 @@ int main(int argc, char **argv)
         *screenGetPoint(screen, food.x, food.y) = '@';
         resetCoordinates();
         screenShow(screen);
-        for (i = 0; i < 20; ++i) putchar('-');
+        for (i = 0; i < SIZE*2; ++i) putchar('-');
         printf("\nScore: %d\n", player->score);
 
         thrd_sleep(&(struct timespec){.tv_sec=1}, NULL);
