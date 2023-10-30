@@ -1,11 +1,6 @@
-include config/config.mk
+include config.mk
 
-OUT = game
-CFLAGS =
-LDFLAGS =
-INCLUDE = -Iinclude -Iconfig
-CC  = cc
-LD  = ld
+INCLUDE = -Iinclude
 RM  = rm -f
 SRCDIR = src
 OBJDIR = obj
