@@ -1,7 +1,5 @@
 #!/bin/sh
 
-mkdir config
-
 CC=${CC:-cc}
 RM=${RM:-rm -f}
 CFLAGS=${CFLAGS:-}
@@ -22,6 +20,13 @@ echo "Code configuration:"
 echo "Size: $SIZE"
 echo "Start x: $DEFX"
 echo "Start y: $DEFY"
+
+if [ ! test -d config ]; then
+    if [ test-f config ]; then
+        rm config
+    fi
+    mkdir config
+fi
 
 echo "CC = $CC
 RM = $RM
