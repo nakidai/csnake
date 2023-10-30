@@ -6,15 +6,27 @@ CFLAGS=${CFLAGS:-}
 LDFLAGS=${LDFLAGS:-}
 OUT=${OUT:-game}
 SIZE=${SIZE:-10}
+DEFX=${DEFX:-0}
+DEFY=${DEFY:-0}
 
+echo "Makefile configuration:"
 echo "Compiler: $CC"
 echo "Remove: $RM"
 echo "CFLAGS: $CFLAGS"
 echo "LDFLAGS: $LDFLAGS"
 echo "Out file: $OUT"
+echo
+echo "Code configuration:"
+echo "Size: $SIZE"
+echo "Start x: $DEFX"
+echo "Start y: $DEFY"
 
 echo "CC = $CC
 RM = $RM
 CFLAGS = $CFLAGS
 LDFLAGS = $LDFLAGS
 OUT = $OUT" > config/config.mk
+
+echo "#define SIZE $SIZE
+#define DEFX $DEFX
+#define DEFY $DEFY" > config/config.h

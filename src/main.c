@@ -8,6 +8,7 @@
 #include "screen.h"
 #include "player.h"
 #include "food.h"
+#include "config.h"
 
 void drawPlayer(Player *player, Screen *screen)
 {
@@ -21,7 +22,7 @@ Food generateFood(Player *player)
     Food food;
     do
     {
-        food = (Food){random() % 10, random() % 10};
+        food = (Food){random() % SIZE, random() % SIZE};
     } while (playerCheckFoodCollision(player, food));
     return food;
 }
@@ -34,8 +35,8 @@ void resetCoordinates(void)
 int main(int argc, char **argv)
 {
     srandom(time(NULL));
-    Player *player = playerCreate(DOWN, 0, 0, 0);
-    Screen *screen = screenCreate(10, 10, ' ');
+    Player *player = playerCreate(DOWN, DEFX, DEFY, 0);
+    Screen *screen = screenCreate(SIZE, SIZE, ' ');
     PlayerNode *node;
     thrd_t input_thread;
     int i;
@@ -72,7 +73,7 @@ int main(int argc, char **argv)
         }
         head_x = player->head->x;
         head_y = player->head->y;
-        if (head_x >= 10 || head_x < 0 || head_y >= 10 || head_y < 0)
+        if (head_x >= SIZE || head_x < 0 || head_y >= SIZE || head_y < 0)
         {
             *running = false;
             break;
