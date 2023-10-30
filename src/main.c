@@ -33,6 +33,7 @@ int main(int argc, char **argv)
     Screen *screen = screenCreate(10, 10, ' ');
     PlayerNode *node;
     thrd_t input_thread;
+    int i;
     int head_x, head_y;
     Food food = generateFood(player);
 
@@ -76,6 +77,8 @@ int main(int argc, char **argv)
         drawPlayer(player, screen);
         *screenGetPoint(screen, food.x, food.y) = '@';
         screenShow(screen);
+        for (i = 0; i < 20; ++i) putchar('-');
+        printf("\nScore: %d\n", player->score);
 
         thrd_sleep(&(struct timespec){.tv_sec=1}, NULL);
     }
