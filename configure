@@ -1,5 +1,7 @@
 #!/bin/sh
 
+mkdir config
+
 CC=${CC:-cc}
 RM=${RM:-rm -f}
 CFLAGS=${CFLAGS:-}
