@@ -3,7 +3,7 @@ include config/config.mk
 OUT = game
 CFLAGS =
 LDFLAGS =
-INCLUDE = -Iinclude
+INCLUDE = -Iinclude -Iconfig
 CC  = cc
 LD  = ld
 RM  = rm -f
@@ -24,6 +24,6 @@ $(OUT): obj $(OBJ)
 	$(CC) -o $@ $(OBJ) $(LDFLAGS)
 
 clean:
-	$(RM) $(OUT) config/* $(OBJDIR)/*
+	$(RM) $(OUT) $(OBJDIR)/*
 
 .PHONY: default clean
