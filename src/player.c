@@ -36,7 +36,7 @@ bool playerCheckSelfCollision(Player *player)
     PlayerNode *nodei, *nodej;
     for (nodei = player->tail; nodei != NULL; nodei = nodei->next)
         for (nodej = nodei->next; nodej != NULL; nodej = nodej->next)
-            if (nodei->x == nodej->x && nodei->y == nodej->x)
+            if (nodei->x == nodej->x && nodei->y == nodej->y)
                 return true;
     return false;
 }

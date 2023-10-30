@@ -28,7 +28,7 @@ Food generateFood(Player *player)
 
 void resetCoordinates(void)
 {
-    printf("\033[0;0H");
+    printf("\e[1;1H\e[2J");
 }
 
 int main(int argc, char **argv)
