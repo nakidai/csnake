@@ -55,12 +55,16 @@ int main(int argc, char **argv)
             case 'q':
                 *running = false; return 0;
             case 'w':
+                if (player->direction == DOWN) break;
                 player->direction = UP; break;
             case 'd':
+                if (player->direction == LEFT) break;
                 player->direction = RIGHT; break;
             case 's':
+                if (player->direction == UP) break;
                 player->direction = DOWN; break;
             case 'a':
+                if (player->direction == RIGHT) break;
                 player->direction = LEFT; break;
         }
 
