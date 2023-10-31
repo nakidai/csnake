@@ -1,0 +1,3 @@
+#define SIZE ${SIZE}
+#define DEFX ${DEFX}
+#define DEFY ${DEFY}
