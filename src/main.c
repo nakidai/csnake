@@ -22,7 +22,7 @@ Food generateFood(Player *player)
     Food food;
     do
     {
-        food = (Food){random() % SIZE, random() % SIZE};
+        food = (Food){rand() % SIZE, rand() % SIZE};
     } while (playerCheckFoodCollision(player, food));
     return food;
 }
@@ -34,7 +34,7 @@ void resetCoordinates(void)
 
 int main(int argc, char **argv)
 {
-    srandom(time(NULL));
+    srand(time(NULL));
     Player *player = playerCreate(DOWN, DEFX, DEFY, 0);
     Screen *screen = screenCreate(SIZE, SIZE, ' ');
     PlayerNode *node;
