@@ -68,7 +68,7 @@ int main(int argc, char **argv)
                 player->direction = LEFT; break;
         }
 
-        if (playerDoTick(player, food) && player->score >= SIZE*SIZE - 1)
+        if (playerDoTick(player, food) && player->score < SIZE*SIZE - 1)
             food = generateFood(player);
         head_x = player->head->x;
         head_y = player->head->y;
