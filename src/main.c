@@ -70,14 +70,9 @@ int main(int argc, char **argv)
 
         if (playerDoTick(player, food))
             food = generateFood(player);
-        if (playerCheckSelfCollision(player))
-        {
-            *running = false;
-            break;
-        }
         head_x = player->head->x;
         head_y = player->head->y;
-        if (head_x >= SIZE || head_x < 0 || head_y >= SIZE || head_y < 0)
+        if (head_x >= SIZE || head_x < 0 || head_y >= SIZE || head_y < 0 || playerCheckSelfCollision(player))
         {
             *running = false;
             break;
