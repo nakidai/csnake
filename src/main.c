@@ -45,15 +45,27 @@ int main(int argc, char **argv)
 
     bool *running = malloc(sizeof(bool)); *running = true;
     char *key = malloc(sizeof(char)); *key = 0;
+    bool stopped = false;
     InputArgs input_args = (InputArgs){ key, running };
 
     thrd_create(&input_thread, input, &input_args);
     while (*running)
     {
+        screenSet(screen, ' ');
+        drawPlayer(player, screen);
+        *screenGetPoint(screen, food.x, food.y) = '@';
+        resetCoordinates();
+        screenShow(screen);
+        for (i = 0; i < SIZE*2; ++i) putchar('-');
+        printf("\nScore: %d\n", player->score);
+
+        thrd_sleep(&(struct timespec){.tv_sec=1}, NULL);
         switch (*key)
         {
             case 'q':
                 *running = false; return 0;
+            case 'p':
+                stopped = !stopped; break;
             case 'w':
                 if (player->direction == DOWN) break;
                 player->direction = UP; break;
@@ -66,7 +78,8 @@ int main(int argc, char **argv)
             case 'a':
                 if (player->direction == RIGHT) break;
                 player->direction = LEFT; break;
-        }
+        } *key = 0;
+        if (stopped) continue;
 
         if (playerDoTick(player, food) && player->score < SIZE*SIZE - 1)
             food = generateFood(player);
@@ -77,16 +90,6 @@ int main(int argc, char **argv)
             *running = false;
             break;
         }
-
-        screenSet(screen, ' ');
-        drawPlayer(player, screen);
-        *screenGetPoint(screen, food.x, food.y) = '@';
-        resetCoordinates();
-        screenShow(screen);
-        for (i = 0; i < SIZE*2; ++i) putchar('-');
-        printf("\nScore: %d\n", player->score);
-
-        thrd_sleep(&(struct timespec){.tv_sec=1}, NULL);
     }
     return 0;
 }
