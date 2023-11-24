@@ -1,6 +1,6 @@
 obj/
 build/
-game
+csnake
 *.core
 include/config.h
 config.mk
