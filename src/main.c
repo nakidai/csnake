@@ -51,7 +51,6 @@ int main(int argc, char **argv)
     Player *player = playerCreate(DOWN, DEFX, DEFY, 0);
     Screen *screen = screenCreate(SIZE, SIZE, ' ');
     PlayerNode *node;
-    pthread_t input_thread;
     int i;
     int head_x, head_y;
     Food food = generateFood(player);
@@ -64,6 +63,7 @@ int main(int argc, char **argv)
 #ifdef _WIN32
     _beginthread(input, 0, &input_args);
 #else
+    pthread_t input_thread;
     pthread_create(&input_thread, NULL, input, &input_args);
 #endif
     while (*running)
