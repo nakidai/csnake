@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include <threads.h>
+#include <pthread.h>
 #include <time.h>
 
 #include "input.h"
@@ -38,7 +38,7 @@ int main(int argc, char **argv)
     Player *player = playerCreate(DOWN, DEFX, DEFY, 0);
     Screen *screen = screenCreate(SIZE, SIZE, ' ');
     PlayerNode *node;
-    thrd_t input_thread;
+    pthread_t input_thread;
     int i;
     int head_x, head_y;
     Food food = generateFood(player);
@@ -48,7 +48,7 @@ int main(int argc, char **argv)
     bool stopped = false;
     InputArgs input_args = (InputArgs){ key, running };
 
-    thrd_create(&input_thread, input, &input_args);
+    pthread_create(&input_thread, NULL, input, &input_args);
     while (*running)
     {
         screenSet(screen, ' ');
@@ -59,7 +59,7 @@ int main(int argc, char **argv)
         for (i = 0; i < SIZE*2; ++i) putchar('-');
         printf("\nScore: %d\n", player->score);
 
-        thrd_sleep(&(struct timespec){.tv_sec=1}, NULL);
+        nanosleep(&(struct timespec){.tv_sec = 1}, NULL);
         switch (*key)
         {
             case 'q':

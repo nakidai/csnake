@@ -30,7 +30,7 @@ int getch(void)
 }
 #endif
 
-int input(void *vargp)
+void *input(void *vargp)
 {
     int *out = ((InputArgs *)vargp)->out;
     bool *alive = ((InputArgs *)vargp)->alive;
@@ -39,5 +39,5 @@ int input(void *vargp)
     {
         *out = getch();
     }
-    return 0;
+    return NULL;
 }
