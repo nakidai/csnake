@@ -6,7 +6,7 @@ then
     CC      - compiler (default: cc)
     CFLAGS  - flags for compiler
     LDFLAGS - flags for linker
-    OUT     - out file (default: game
+    OUT     - out file (default: csnake
     SIZE    - size of game field
     DEFX    - start x
     DEFY    - start y"
@@ -16,7 +16,7 @@ fi
 CC=${CC:-cc}
 CFLAGS=${CFLAGS:-}
 LDFLAGS=${LDFLAGS:-}
-OUT=${OUT:-game}
+OUT=${OUT:-csnake}
 SIZE=${SIZE:-10}
 DEFX=${DEFX:-0}
 DEFY=${DEFY:-0}

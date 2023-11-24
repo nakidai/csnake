@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(csnake VERSION 0.1.0 LANGUAGES C)
+project(csnake VERSION 1.0 LANGUAGES C)
 
 if(PROJECT_SOURCE_DIR STREQUAL PROJECT_BINARY_DIR)
   message(FATAL_ERROR "In-source builds are not allowed.")
@@ -12,7 +12,7 @@ add_executable(csnake
   src/player.c
 )
 
-set_target_properties(csnake PROPERTIES C_STANDARD 11)
+set_target_properties(csnake PROPERTIES C_STANDARD 99)
 set_target_properties(csnake PROPERTIES C_EXTENSIONS FALSE)
 target_include_directories(csnake PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 

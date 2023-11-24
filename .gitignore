@@ -1,5 +1,6 @@
 obj/
+build/
 game
 *.core
-src/config.h
+include/config.h
 config.mk
