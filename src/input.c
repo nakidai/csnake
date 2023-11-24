@@ -1,10 +1,17 @@
 #include "input.h"
 #include <stdio.h>
 #include <stdlib.h>
+#ifdef WIN32
+#include <conio.h>
+#else
 #include <unistd.h>
 #include <termios.h>
+#endif
 
-char getch(void)
+#ifdef WIN32
+#define getch _getch
+#else
+int getch(void)
 {
     char buf = 0;
     struct termios old = { 0 };
@@ -19,12 +26,13 @@ char getch(void)
     old.c_lflag    |= ICANON;    // local modes = Canonical mode
     old.c_lflag    |= ECHO;      // local modes = Enable echo. 
     if (tcsetattr(0, TCSADRAIN, &old) < 0) perror ("tcsetattr ~ICANON");
-    return buf;
+    return (int)buf;
 }
+#endif
 
 int input(void *vargp)
 {
-    char *out = ((InputArgs *)vargp)->out;
+    int *out = ((InputArgs *)vargp)->out;
     bool *alive = ((InputArgs *)vargp)->alive;
 
     while (*alive)

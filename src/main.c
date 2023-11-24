@@ -44,7 +44,7 @@ int main(int argc, char **argv)
     Food food = generateFood(player);
 
     bool *running = malloc(sizeof(bool)); *running = true;
-    char *key = malloc(sizeof(char)); *key = 0;
+    int *key = malloc(sizeof(char)); *key = 0;
     bool stopped = false;
     InputArgs input_args = (InputArgs){ key, running };
 

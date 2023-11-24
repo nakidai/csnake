@@ -5,7 +5,7 @@
 
 typedef struct input_args_t
 {
-    char *out;
+    int *out;
     bool *alive;
 } InputArgs;
 
