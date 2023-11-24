@@ -47,10 +47,9 @@ void resetCoordinates(void)
 
 int main(int argc, char **argv)
 {
-    srand(time(NULL));
+    srand((unsigned int)time(NULL));
     Player *player = playerCreate(DOWN, DEFX, DEFY, 0);
     Screen *screen = screenCreate(SIZE, SIZE, ' ');
-    PlayerNode *node;
     int i;
     int head_x, head_y;
     Food food = generateFood(player);

@@ -30,7 +30,11 @@ int getch(void)
 }
 #endif
 
+#ifdef _WIN32
+void input(void *vargp)
+#else
 void *input(void *vargp)
+#endif
 {
     int *out = ((InputArgs *)vargp)->out;
     bool *alive = ((InputArgs *)vargp)->alive;
@@ -39,5 +43,7 @@ void *input(void *vargp)
     {
         *out = getch();
     }
+#ifndef _WIN32
     return NULL;
+#endif
 }
