@@ -7,7 +7,7 @@ OBJDIR = obj
 SRC = main.c screen.c input.c player.c
 OBJ = $(addprefix $(OBJDIR)/,$(SRC:.c=.o))
 
-default: $(OUT)
+all: $(OUT)
 
 obj:
 	mkdir obj
