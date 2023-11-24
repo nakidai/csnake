@@ -4,12 +4,7 @@
 #include <stdbool.h>
 #include "food.h"
 
-#define UP    0
-#define RIGHT 1
-#define DOWN  2
-#define LEFT  3
-
-typedef int Direction;
+typedef enum { UP, RIGHT, DOWN, LEFT} Direction;
 typedef struct player_node_t PlayerNode;
 typedef struct player_t Player;
 

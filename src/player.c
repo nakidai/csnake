@@ -45,6 +45,7 @@ bool playerDoTick(Player *player, Food food)
 {
     bool food_collision;
     PlayerNode *new_head = (PlayerNode *)malloc(sizeof(PlayerNode));
+    new_head->next = NULL;
     int head_x = player->head->x;
     int head_y = player->head->y;
     
