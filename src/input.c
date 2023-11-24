@@ -1,14 +1,14 @@
 #include "input.h"
 #include <stdio.h>
 #include <stdlib.h>
-#ifdef WIN32
+#ifdef _WIN32
 #include <conio.h>
 #else
 #include <unistd.h>
 #include <termios.h>
 #endif
 
-#ifdef WIN32
+#ifdef _WIN32
 #define getch _getch
 #else
 int getch(void)

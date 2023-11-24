@@ -1,8 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include <pthread.h>
 #include <time.h>
+#ifdef _WIN32
+#include <Windows.h>
+#include <process.h>
+#else
+#include <pthread.h>
+#endif
 
 #include "input.h"
 #include "screen.h"
@@ -27,10 +32,18 @@ Food generateFood(Player *player)
     return food;
 }
 
+#ifdef _WIN32
+void resetCoordinates(void)
+{
+    HANDLE output = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleCursorPosition(output, (COORD){0});
+}
+#else
 void resetCoordinates(void)
 {
     printf("\e[1;1H\e[2J");
 }
+#endif
 
 int main(int argc, char **argv)
 {
@@ -48,7 +61,11 @@ int main(int argc, char **argv)
     bool stopped = false;
     InputArgs input_args = (InputArgs){ key, running };
 
+#ifdef _WIN32
+    _beginthread(input, 0, &input_args);
+#else
     pthread_create(&input_thread, NULL, input, &input_args);
+#endif
     while (*running)
     {
         screenSet(screen, ' ');
@@ -59,7 +76,11 @@ int main(int argc, char **argv)
         for (i = 0; i < SIZE*2; ++i) putchar('-');
         printf("\nScore: %d\n", player->score);
 
+#ifdef _WIN32
+        Sleep(1000L);
+#else
         nanosleep(&(struct timespec){.tv_sec = 1}, NULL);
+#endif
         switch (*key)
         {
             case 'q':
