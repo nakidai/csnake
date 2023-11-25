@@ -14,7 +14,7 @@ add_executable(csnake
   src/sleep.c
 )
 
-set_target_properties(csnake PROPERTIES C_STANDARD 99)
+set_target_properties(csnake PROPERTIES C_STANDARD 11)
 set_target_properties(csnake PROPERTIES C_EXTENSIONS FALSE)
 target_include_directories(csnake PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 

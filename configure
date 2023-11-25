@@ -1,7 +1,7 @@
 #!/bin/sh
 
-if [[ "$*" == *"--help"* ]] || [[ "$*" == *"-h"* ]]
-then
+usage()
+{
     echo "Use environment variables to pass values:
     CC      - compiler (default: cc)
     CFLAGS  - flags for compiler
@@ -11,7 +11,17 @@ then
     DEFX    - start x
     DEFY    - start y"
     exit 1
-fi
+}
+
+while test $# -gt 0; do
+    case "$1" in
+        -h) usage
+            ;;
+        --help) usage
+            ;;
+    esac
+    shift
+done
 
 CC=${CC:-cc}
 CFLAGS=${CFLAGS:-}
