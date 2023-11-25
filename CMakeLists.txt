@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(csnake VERSION 1.0 LANGUAGES C)
+project(csnake VERSION 1.1 LANGUAGES C)
 
 if(PROJECT_SOURCE_DIR STREQUAL PROJECT_BINARY_DIR)
   message(FATAL_ERROR "In-source builds are not allowed.")
@@ -16,6 +16,9 @@ add_executable(csnake
 
 set_target_properties(csnake PROPERTIES C_STANDARD 11)
 set_target_properties(csnake PROPERTIES C_EXTENSIONS FALSE)
+if(${CMAKE_SYSTEM_NAME} STREQUAL "FreeBSD")
+    target_link_libraries(csnake pthread)
+endif()
 target_include_directories(csnake PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 set(SIZE 10 CACHE STRING "Size of game field")
