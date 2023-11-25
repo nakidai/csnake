@@ -10,6 +10,8 @@ add_executable(csnake
   src/screen.c
   src/input.c
   src/player.c
+  src/platform.c
+  src/sleep.c
 )
 
 set_target_properties(csnake PROPERTIES C_STANDARD 99)

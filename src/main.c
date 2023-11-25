@@ -2,18 +2,14 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <time.h>
-#ifdef _WIN32
-#include <Windows.h>
-#include <process.h>
-#else
-#include <pthread.h>
-#endif
 
 #include "input.h"
 #include "screen.h"
 #include "player.h"
 #include "food.h"
 #include "config.h"
+#include "platform.h"
+#include "sleep.h"
 
 void drawPlayer(Player *player, Screen *screen)
 {
@@ -32,19 +28,6 @@ Food generateFood(Player *player)
     return food;
 }
 
-#ifdef _WIN32
-void resetCoordinates(void)
-{
-    HANDLE output = GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleCursorPosition(output, (COORD){0});
-}
-#else
-void resetCoordinates(void)
-{
-    printf("\e[1;1H\e[2J");
-}
-#endif
-
 int main(int argc, char **argv)
 {
     srand((unsigned int)time(NULL));
@@ -59,12 +42,7 @@ int main(int argc, char **argv)
     bool stopped = false;
     InputArgs input_args = (InputArgs){ key, running };
 
-#ifdef _WIN32
-    _beginthread(input, 0, &input_args);
-#else
-    pthread_t input_thread;
-    pthread_create(&input_thread, NULL, input, &input_args);
-#endif
+    threadCreate(input, &input_args);
     while (*running)
     {
         screenSet(screen, ' ');
@@ -75,11 +53,7 @@ int main(int argc, char **argv)
         for (i = 0; i < SIZE*2; ++i) putchar('-');
         printf("\nScore: %d\n", player->score);
 
-#ifdef _WIN32
-        Sleep(1000L);
-#else
-        nanosleep(&(struct timespec){.tv_sec = 1}, NULL);
-#endif
+        sleepMS(1000);
         switch (*key)
         {
             case 'q':

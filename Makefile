@@ -4,7 +4,7 @@ INCLUDE = -Iinclude
 RM  = rm -f
 SRCDIR = src
 OBJDIR = obj
-SRC = main.c screen.c input.c player.c
+SRC = main.c screen.c input.c player.c platform.c sleep.c
 OBJ = $(addprefix $(OBJDIR)/,$(SRC:.c=.o))
 
 all: $(OUT)
