@@ -53,7 +53,7 @@ int main(int argc, char **argv)
         for (i = 0; i < SIZE*2; ++i) putchar('-');
         printf("\nScore: %d\n", player->score);
 
-        sleepMS(1000);
+        sleepMS(SLEEP);
         switch (*key)
         {
             case 'q':

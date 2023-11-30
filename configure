@@ -9,7 +9,8 @@ usage()
     OUT     - out file (default: csnake
     SIZE    - size of game field
     DEFX    - start x
-    DEFY    - start y"
+    DEFY    - start y
+    SLEEP   - sleep between frames (ms)"
     exit 1
 }
 
@@ -30,6 +31,7 @@ OUT=${OUT:-csnake}
 SIZE=${SIZE:-10}
 DEFX=${DEFX:-0}
 DEFY=${DEFY:-0}
+SLEEP=${SLEEP:-1000}
 
 echo "Makefile configuration:"
 echo "Compiler: $CC"
@@ -41,6 +43,7 @@ echo "Code configuration:"
 echo "Size: $SIZE"
 echo "Start x: $DEFX"
 echo "Start y: $DEFY"
+echo "Sleep: $SLEEP"
 
 echo "CC = $CC
 CFLAGS = $CFLAGS
@@ -49,4 +52,5 @@ OUT = $OUT" > config.mk
 
 echo "#define SIZE $SIZE
 #define DEFX $DEFX
-#define DEFY $DEFY" > include/config.h
+#define DEFY $DEFY
+#define SLEEP $SLEEP" > include/config.h
