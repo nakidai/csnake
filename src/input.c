@@ -11,7 +11,7 @@
 #ifdef _WIN32
 #define getch _getch
 #else
-int getch(void)
+static int getch(void)
 {
     char buf = 0;
     struct termios old = { 0 };

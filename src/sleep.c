@@ -1,6 +1,6 @@
 #include <time.h>
 
-long long int getMS()
+static long long int getMS()
 {
     struct timespec ts;
     timespec_get(&ts, TIME_UTC);

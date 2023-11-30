@@ -10,7 +10,6 @@ add_executable(csnake
   src/screen.c
   src/input.c
   src/player.c
-  src/platform.c
   src/sleep.c
 )
 

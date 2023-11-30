@@ -21,11 +21,6 @@ void screenFree(Screen *screen)
     free(screen);
 }
 
-Point *screenGetPoint(Screen *screen, int x, int y)
-{
-    return screen->screen + x + (y * screen->width);
-}
-
 void screenShow(Screen *screen)
 {
     int x, y, i;
@@ -42,9 +37,4 @@ void screenShow(Screen *screen)
         }
         putchar('\n');
     }
-}
-
-void screenSet(Screen *screen, Point fill_value)
-{
-    memset(screen->screen, fill_value, screen->width * screen->height * sizeof(char));
 }
