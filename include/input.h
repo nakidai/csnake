@@ -3,16 +3,14 @@
 
 #include <stdbool.h>
 
+#include "platform/thread.h"
+
 typedef struct input_args_t
 {
-    int *out;
+    int  *out;
     bool *alive;
 } InputArgs;
 
-#ifdef _WIN32
-void input(void *vargp);
-#else
-void *input(void *vargp);
-#endif
+ThreadR input(void *vargp);
 
 #endif /* __INPUT_H__ */

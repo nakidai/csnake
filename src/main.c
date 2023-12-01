@@ -8,8 +8,9 @@
 #include "player.h"
 #include "food.h"
 #include "config.h"
-#include "platform.h"
 #include "sleep.h"
+#include "platform/thread.h"
+#include "platform/screen.h"
 
 void drawPlayer(Player *player, Screen *screen)
 {
