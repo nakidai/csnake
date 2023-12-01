@@ -15,12 +15,6 @@ Screen *screenCreate(int width, int height, Point fill_value)
     return out;
 }
 
-void screenFree(Screen *screen)
-{
-    free(screen->screen);
-    free(screen);
-}
-
 void screenShow(Screen *screen)
 {
     int x, y, i;

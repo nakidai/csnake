@@ -12,8 +12,6 @@ typedef struct screen_t
 } Screen;
 
 Screen *screenCreate(int width, int height, Point fill_value);
-void screenFree(Screen *screen);
-
 void screenShow(Screen *screen);
 
 static inline Point *screenGetPoint(Screen *screen, int x, int y)

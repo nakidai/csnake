@@ -22,7 +22,6 @@ struct player_t
 };
 
 Player *playerCreate(Direction direction, int x, int y, int score);
-void playerFree(Player *player);
 
 bool playerCheckSelfCollision(Player *player);
 bool playerCheckFoodCollision(Player *player, Food food);

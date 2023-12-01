@@ -19,10 +19,6 @@ Player *playerCreate(Direction direction, int x, int y, int score)
     return player;
 }
 
-void playerFree(Player *player)
-{
-}
-
 bool playerCheckFoodCollision(Player *player, Food food)
 {
     for (PlayerNode *node = player->tail; node != NULL; node = node->next)
