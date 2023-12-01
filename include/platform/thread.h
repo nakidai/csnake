@@ -17,16 +17,13 @@ typedef void* ThreadR;
 #endif /* _WIN32 */
 typedef ThreadR (*Thread)(void *);
 
+static inline void threadCreate(Thread function, void *args)
+{
 #ifdef _WIN32
-static inline void threadCreate(Thread function, void *args)
-{
     _beginthread(function, 0, args);
-}
 #else
-static inline void threadCreate(Thread function, void *args)
-{
     pthread_create(&(pthread_t){0}, 0, function, args);
-}
 #endif /* _WIN32 */
+}
 
 #endif /* __THREAD_H__ */
