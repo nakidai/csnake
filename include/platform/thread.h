@@ -13,7 +13,7 @@ typedef void  ThreadR;
 #define ThreadReturn return
 #else
 typedef void* ThreadR;
-#define ThreadReturn return NULL;
+#define ThreadReturn return NULL
 #endif /* _WIN32 */
 typedef ThreadR (*Thread)(void *);
 
