@@ -11,19 +11,19 @@ DEFLDFLAGS = $(shell if echo "" | cc -E -dM -xc - | grep __FreeBSD__ > /dev/null
 
 all: $(OUT)
 
-obj:
-	mkdir obj
+$(OBJDIR):
+	mkdir $(OBJDIR)
 
-platform: obj
-	mkdir obj/platform
+$(OBJDIR)/platform: $(OBJDIR)
+	mkdir $(OBJDIR)/platform
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	$(CC) -c -o $@ $< $(CFLAGS) $(INCLUDE)
 
-$(OUT): obj platform $(OBJ)
+$(OUT): $(OBJDIR) $(OBJDIR)/platform $(OBJ)
 	$(CC) -o $@ $(OBJ) $(LDFLAGS) $(DEFLDFLAGS)
 
 clean:
-	$(RM) -r $(OUT) $(OBJDIR)/*
+	$(RM) $(OUT) $(OBJDIR)/*.o $(OBJDIR)/platform/*.o
 
 .PHONY: default clean
