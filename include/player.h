@@ -21,10 +21,10 @@ struct player_t
     int score;
 };
 
-Player *playerCreate(Direction direction, int x, int y, int score);
+void playerCreate(Player *buffer, Direction direction, int x, int y, int score);
 
-bool playerCheckSelfCollision(Player *player);
-bool playerCheckFoodCollision(Player *player, Food food);
+bool playerCheckSelfCollision(Player player);
+bool playerCheckFoodCollision(Player player, Food food);
 bool playerDoTick(Player *player, Food food);
 
 #endif /* __PLAYER_H__ */

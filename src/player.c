@@ -2,35 +2,32 @@
 
 #include "player.h"
 
-Player *playerCreate(Direction direction, int x, int y, int score)
+void playerCreate(Player *buffer, Direction direction, int x, int y, int score)
 {
-    Player *player = (Player *)malloc(sizeof(Player));
     PlayerNode *head = (PlayerNode *)malloc(sizeof(PlayerNode));
 
     head->x = x;
     head->y = y;
     head->next = NULL;
 
-    player->tail = head;
-    player->head = head;
-    player->score = score;
-    player->direction = direction;
-
-    return player;
+    buffer->tail = head;
+    buffer->head = head;
+    buffer->score = score;
+    buffer->direction = direction;
 }
 
-bool playerCheckFoodCollision(Player *player, Food food)
+bool playerCheckFoodCollision(Player player, Food food)
 {
-    for (PlayerNode *node = player->tail; node != NULL; node = node->next)
+    for (PlayerNode *node = player.tail; node != NULL; node = node->next)
         if (node->x == food.x && node->y == food.y)
             return true;
     return false;
 }
 
-bool playerCheckSelfCollision(Player *player)
+bool playerCheckSelfCollision(Player player)
 {
     PlayerNode *nodei, *nodej;
-    for (nodei = player->tail; nodei != NULL; nodei = nodei->next)
+    for (nodei = player.tail; nodei != NULL; nodei = nodei->next)
         for (nodej = nodei->next; nodej != NULL; nodej = nodej->next)
             if (nodei->x == nodej->x && nodei->y == nodej->y)
                 return true;

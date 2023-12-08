@@ -1,25 +1,24 @@
-#include "screen.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-Screen *screenCreate(int width, int height, Point fill_value)
+#include "screen.h"
+
+void screenCreate(Screen *buffer, int width, int height, Point fill_value)
 {
     Point *screen = malloc(width * height * sizeof(Point));
     memset(screen, fill_value, width * height * sizeof(Point));
 
-    Screen *out = malloc(sizeof(Screen));
-    out->width = width;
-    out->height = height;
-    out->screen = screen;
-    return out;
+    buffer->width = width;
+    buffer->height = height;
+    buffer->screen = screen;
 }
 
-void screenShow(Screen *screen)
+void screenShow(Screen screen)
 {
     int x, y, i;
-    int width = screen->width;
-    int height = screen->height;
+    int width = screen.width;
+    int height = screen.height;
     Point point;
 
     for (y = 0; y < height; ++y)

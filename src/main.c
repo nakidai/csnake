@@ -12,14 +12,14 @@
 #include "platform/thread.h"
 #include "platform/screen.h"
 
-void drawPlayer(Player *player, Screen *screen)
+void drawPlayer(Player player, Screen screen)
 {
     PlayerNode *node;
-    for (node = player->tail; node != NULL; node = node->next)
+    for (node = player.tail; node != NULL; node = node->next)
         *screenGetPoint(screen, node->x, node->y) = '#';
 }
 
-Food generateFood(Player *player)
+Food generateFood(Player player)
 {
     Food food;
     do
@@ -32,19 +32,19 @@ Food generateFood(Player *player)
 int main(int argc, char **argv)
 {
     srand((unsigned int)time(NULL));
-    Player *player = playerCreate(DOWN, DEFX, DEFY, 0);
-    Screen *screen = screenCreate(SIZE, SIZE, ' ');
+    Player player; playerCreate(&player, DOWN, DEFX, DEFY, 0);
+    Screen screen; screenCreate(&screen, SIZE, SIZE, ' ');
     int i;
     int head_x, head_y;
     Food food = generateFood(player);
 
-    bool *running = malloc(sizeof(bool)); *running = true;
-    int *key = malloc(sizeof(char)); *key = 0;
+    bool running = true;
+    int  key = 0;
     bool stopped = false;
-    InputArgs input_args = (InputArgs){ key, running };
+    InputArgs input_args = (InputArgs){ &key, &running };
 
     threadCreate(input, &input_args);
-    while (*running)
+    while (running)
     {
         screenSet(screen, ' ');
         drawPlayer(player, screen);
@@ -52,37 +52,37 @@ int main(int argc, char **argv)
         resetCoordinates();
         screenShow(screen);
         for (i = 0; i < SIZE*2; ++i) putchar('-');
-        printf("\nScore: %d\n", player->score);
+        printf("\nScore: %d\n", player.score);
 
         sleepMS(SLEEP);
-        switch (*key)
+        switch (key)
         {
             case 'q':
-                *running = false; return 0;
+                running = false; return 0;
             case 'p':
                 stopped = !stopped; break;
             case 'w':
-                if (player->direction == DOWN) break;
-                player->direction = UP; break;
+                if (player.direction == DOWN) break;
+                player.direction = UP; break;
             case 'd':
-                if (player->direction == LEFT) break;
-                player->direction = RIGHT; break;
+                if (player.direction == LEFT) break;
+                player.direction = RIGHT; break;
             case 's':
-                if (player->direction == UP) break;
-                player->direction = DOWN; break;
+                if (player.direction == UP) break;
+                player.direction = DOWN; break;
             case 'a':
-                if (player->direction == RIGHT) break;
-                player->direction = LEFT; break;
-        } *key = 0;
+                if (player.direction == RIGHT) break;
+                player.direction = LEFT; break;
+        } key = 0;
         if (stopped) continue;
 
-        if (playerDoTick(player, food) && player->score < SIZE*SIZE - 1)
+        if (playerDoTick(&player, food) && player.score < SIZE*SIZE - 1)
             food = generateFood(player);
-        head_x = player->head->x;
-        head_y = player->head->y;
+        head_x = player.head->x;
+        head_y = player.head->y;
         if (head_x >= SIZE || head_x < 0 || head_y >= SIZE || head_y < 0 || playerCheckSelfCollision(player))
         {
-            *running = false;
+            running = false;
             break;
         }
     }

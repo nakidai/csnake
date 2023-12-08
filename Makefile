@@ -11,16 +11,13 @@ DEFLDFLAGS = $(shell if echo "" | cc -E -dM -xc - | grep __FreeBSD__ > /dev/null
 
 all: $(OUT)
 
-$(OBJDIR):
-	mkdir $(OBJDIR)
-
-$(OBJDIR)/platform: $(OBJDIR)
-	mkdir $(OBJDIR)/platform
+$(OBJDIR)/platform:
+	mkdir -p $(OBJDIR)/platform
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	$(CC) -c -o $@ $< $(CFLAGS) $(INCLUDE)
 
-$(OUT): $(OBJDIR) $(OBJDIR)/platform $(OBJ)
+$(OUT): $(OBJDIR)/platform $(OBJ)
 	$(CC) -o $@ $(OBJ) $(LDFLAGS) $(DEFLDFLAGS)
 
 clean:
