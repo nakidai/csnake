@@ -32,29 +32,30 @@ Food generateFood(Player player)
 int main(int argc, char **argv)
 {
     srand((unsigned int)time(NULL));
+
     Player player; playerCreate(&player, DOWN, DEFX, DEFY, 0);
     Screen screen; screenCreate(&screen, SIZE, SIZE, ' ');
-    int i;
-    int head_x, head_y;
-    Food food = generateFood(player);
+    Food   food =  generateFood(player);
 
-    bool running = true;
     int  key = 0;
+    bool running = true;
     bool stopped = false;
-    InputArgs input_args = (InputArgs){ &key, &running };
+    int  head_x, head_y;
 
-    threadCreate(input, &input_args);
+    threadCreate(input, &(InputArgs){ &key, &running });
     while (running)
     {
         screenSet(screen, ' ');
         drawPlayer(player, screen);
         *screenGetPoint(screen, food.x, food.y) = '@';
+
         resetCoordinates();
         screenShow(screen);
-        for (i = 0; i < SIZE*2; ++i) putchar('-');
+        for (int i = 0; i < SIZE*2; ++i) putchar('-');
         printf("\nScore: %d\n", player.score);
 
         sleepMS(SLEEP);
+
         switch (key)
         {
             case 'q':
@@ -78,6 +79,7 @@ int main(int argc, char **argv)
 
         if (playerDoTick(&player, food) && player.score < SIZE*SIZE - 1)
             food = generateFood(player);
+
         head_x = player.head->x;
         head_y = player.head->y;
         if (head_x >= SIZE || head_x < 0 || head_y >= SIZE || head_y < 0 || playerCheckSelfCollision(player))
