@@ -2,11 +2,14 @@
 #include <unistd.h>
 #include <termios.h>
 #include <stdio.h>
+#include <stdlib.h>
+
+static struct termios DefaultState = {0};
 
 int getch(void)
 {
     char buf = 0;
-    struct termios old = { 0 };
+    struct termios old = {0};
     fflush(stdout);
     if (tcgetattr(0, &old) < 0) perror("tcsetattr()");
     old.c_lflag    &= ~ICANON;   // local modes = Non Canonical mode
@@ -19,6 +22,17 @@ int getch(void)
     old.c_lflag    |= ECHO;      // local modes = Enable echo. 
     if (tcsetattr(0, TCSADRAIN, &old) < 0) perror ("tcsetattr ~ICANON");
     return (int)buf;
+}
+
+static void resetTerminalState(void)
+{
+    tcsetattr(0, TCSANOW, &DefaultState);
+}
+
+int getchInit(void)
+{
+    tcgetattr(0, &DefaultState);
+    return atexit(resetTerminalState);
 }
 
 #endif /* !_WIN32 */

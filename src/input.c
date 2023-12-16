@@ -7,6 +7,7 @@
 
 ThreadR input(void *vargp)
 {
+    getchInit();
     int *out = ((InputArgs *)vargp)->out;
     bool *alive = ((InputArgs *)vargp)->alive;
 
