@@ -11,6 +11,7 @@
 #include "sleep.h"
 #include "platform/thread.h"
 #include "platform/screen.h"
+#include "platform/game.h"
 
 void drawPlayer(Player player, Screen screen)
 {
@@ -32,6 +33,7 @@ Food generateFood(Player player)
 int main(int argc, char **argv)
 {
     srand((unsigned int)time(NULL));
+    platformGameInit();
 
     Player player; playerCreate(&player, DOWN, DEFX, DEFY, 0);
     Screen screen; screenCreate(&screen, SIZE, SIZE, ' ');

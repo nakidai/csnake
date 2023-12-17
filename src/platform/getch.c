@@ -24,15 +24,20 @@ int getch(void)
     return (int)buf;
 }
 
-static void resetTerminalState(void)
+void getchResetTerminalState(void)
 {
     tcsetattr(0, TCSANOW, &DefaultState);
 }
 
-int getchInit(void)
+void getchResetTerminalStateHandler(int sig)
+{
+    getchResetTerminalState();
+    _Exit(sig);
+}
+
+void getchInit(void)
 {
     tcgetattr(0, &DefaultState);
-    return atexit(resetTerminalState);
 }
 
 #endif /* !_WIN32 */

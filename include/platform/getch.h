@@ -7,7 +7,9 @@
 inline int getchInit(void) { return 0; }
 #else
 int getch(void);
-int getchInit(void);
+void getchInit(void);
+void getchResetTerminalStateHandler(int sig);
+void getchResetTerminalState(void);
 #endif /* _WIN32 */
 
 #endif /* __GETCH_H__ */

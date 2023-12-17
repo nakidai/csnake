@@ -12,6 +12,7 @@ add_executable(csnake
   src/player.c
   src/sleep.c
   src/platform/getch.c
+  src/platform/game.c
 )
 
 set_target_properties(csnake PROPERTIES C_STANDARD 11)
