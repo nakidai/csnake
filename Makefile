@@ -15,7 +15,7 @@ $(OBJDIR)/platform:
 	mkdir -p $(OBJDIR)/platform
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
-	$(CC) -c -o $@ $< $(CFLAGS) $(INCLUDE)
+	$(CC) -c -o -std=c11 $@ $< $(CFLAGS) $(INCLUDE)
 
 $(OUT): $(OBJDIR)/platform $(OBJ)
 	$(CC) -o $@ $(OBJ) $(LDFLAGS) $(DEFLDFLAGS)
