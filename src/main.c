@@ -25,7 +25,7 @@ Food generateFood(Player player)
     Food food;
     do
     {
-        food = (Food){rand() % SIZE, rand() % SIZE};
+        food = (Food){rand() % FIELD_SIZE, rand() % FIELD_SIZE};
     } while (playerCheckFoodCollision(player, food));
     return food;
 }
@@ -36,7 +36,7 @@ int main(int argc, char **argv)
     platformGameInit();
 
     Player player; playerCreate(&player, DOWN, DEFX, DEFY, 0);
-    Screen screen; screenCreate(&screen, SIZE, SIZE, ' ');
+    Screen screen; screenCreate(&screen, FIELD_SIZE, FIELD_SIZE, ' ');
     Food   food =  generateFood(player);
 
     int  key = 0;
@@ -53,7 +53,7 @@ int main(int argc, char **argv)
 
         resetCoordinates();
         screenShow(screen);
-        for (int i = 0; i < SIZE*2; ++i) putchar('-');
+        for (int i = 0; i < FIELD_SIZE*2; ++i) putchar('-');
         printf("\nScore: %d\n", player.score);
 
         sleepMS(SLEEP);
@@ -79,12 +79,12 @@ int main(int argc, char **argv)
         } key = 0;
         if (stopped) continue;
 
-        if (playerDoTick(&player, food) && player.score < SIZE*SIZE - 1)
+        if (playerDoTick(&player, food) && player.score < FIELD_SIZE*FIELD_SIZE - 1)
             food = generateFood(player);
 
         head_x = player.head->x;
         head_y = player.head->y;
-        if (head_x >= SIZE || head_x < 0 || head_y >= SIZE || head_y < 0 || playerCheckSelfCollision(player))
+        if (head_x >= FIELD_SIZE || head_x < 0 || head_y >= FIELD_SIZE || head_y < 0 || playerCheckSelfCollision(player))
         {
             running = false;
             break;

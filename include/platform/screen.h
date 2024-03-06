@@ -2,7 +2,7 @@
 #define __PLATFORM_SCREEN_H__
 
 #ifdef _WIN32
-#include <Windows.h>
+#include <windows.h>
 #else
 #include <stdio.h>
 #endif /* _WIN32 */
