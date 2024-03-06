@@ -45,12 +45,5 @@ echo "Start x: $DEFX"
 echo "Start y: $DEFY"
 echo "Sleep: $SLEEP"
 
-echo "CC = $CC
-CFLAGS = $CFLAGS
-LDFLAGS = $LDFLAGS
-OUT = $OUT" > config.mk
-
-echo "#define FIELD_SIZE $FIELD_SIZE
-#define DEFX $DEFX
-#define DEFY $DEFY
-#define SLEEP $SLEEP" > include/config.h
+eval "echo \"$(cat templates/config.mk.in)\"" > config.mk
+eval "echo \"$(cat templates/config.h.in)\""  > include/config.h

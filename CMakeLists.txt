@@ -32,4 +32,7 @@ set(DEFX 0 CACHE STRING "Start x")
 set(DEFY 0 CACHE STRING "Start y")
 set(SLEEP 1000 CACHE STRING "Sleep between frames (ms)")
 
-configure_file(include/config.h.in ${CMAKE_CURRENT_SOURCE_DIR}/include/config.h)
+configure_file(
+  ${CMAKE_CURRENT_SOURCE_DIR}/templates/config.h.in
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/config.h
+)
