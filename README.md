@@ -10,7 +10,7 @@ Supported platforms
 --
 Was tested on:  
 - FreeBSD 13.2  
-- Windows 11 (MSVC)  
+- Windows 11 (both MSVC and MinGW)  
 - Linux 6.5.8 (glibc 2.38-7)  
 
 Building
