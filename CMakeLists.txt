@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(csnake VERSION 1.1 LANGUAGES C)
+project(csnake VERSION 1.2 LANGUAGES C)
 
 if(PROJECT_SOURCE_DIR STREQUAL PROJECT_BINARY_DIR)
   message(FATAL_ERROR "In-source builds are not allowed.")
