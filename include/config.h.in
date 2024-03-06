@@ -1,4 +1,4 @@
-#define SIZE ${SIZE}
+#define FIELD_SIZE ${FIELD_SIZE}
 #define DEFX ${DEFX}
 #define DEFY ${DEFY}
 #define SLEEP ${SLEEP}

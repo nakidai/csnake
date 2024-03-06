@@ -17,12 +17,17 @@ add_executable(csnake
 
 set_target_properties(csnake PROPERTIES C_STANDARD 11)
 set_target_properties(csnake PROPERTIES C_EXTENSIONS FALSE)
+
 if(${CMAKE_SYSTEM_NAME} STREQUAL "FreeBSD")
     target_link_libraries(csnake pthread)
+elseif(${MINGW})
+    set(CMAKE_C_FLAGS "-D_UCRT")
+    target_link_libraries(csnake ucrt)
 endif()
+
 target_include_directories(csnake PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-set(SIZE 10 CACHE STRING "Size of game field")
+set(FIELD_SIZE 10 CACHE STRING "Size of game field")
 set(DEFX 0 CACHE STRING "Start x")
 set(DEFY 0 CACHE STRING "Start y")
 set(SLEEP 1000 CACHE STRING "Sleep between frames (ms)")

@@ -2,7 +2,13 @@
 #define __PLATFORM_SCREEN_H__
 
 #ifdef _WIN32
+
+#ifdef __MINGW32__
+#include <windows.h>
+#else
 #include <Windows.h>
+#endif /* __MINGW32__ */
+
 #else
 #include <stdio.h>
 #endif /* _WIN32 */
