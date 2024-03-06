@@ -3,4 +3,4 @@ build/
 csnake
 *.core
 include/config.h
-config.mk
+include/config.mk

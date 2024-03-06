@@ -45,5 +45,5 @@ echo "Start x: $DEFX"
 echo "Start y: $DEFY"
 echo "Sleep: $SLEEP"
 
-eval "echo \"$(cat templates/config.mk.in)\"" > config.mk
+eval "echo \"$(cat templates/config.mk.in)\"" > include/config.mk
 eval "echo \"$(cat templates/config.h.in)\""  > include/config.h

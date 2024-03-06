@@ -1,4 +1,4 @@
-include config.mk
+include include/config.mk
 
 INCLUDE = -Iinclude
 RM  = rm -f
