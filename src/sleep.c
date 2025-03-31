@@ -1,14 +1,13 @@
+#include <stddef.h>
+#include <threads.h>
 #include <time.h>
-
-static long long int getMS()
-{
-    struct timespec ts;
-    timespec_get(&ts, TIME_UTC);
-    return ts.tv_sec * 1000 + ts.tv_nsec / 1000000;
-}
 
 void sleepMS(int msec)
 {
-    long long int end = getMS() + msec;
-    while (getMS() < end);
+    struct timespec tosleep =
+    {
+        .tv_sec = msec / 1000,
+        .tv_nsec = (msec * 1000000) % 1000,
+    };
+    thrd_sleep(&tosleep, NULL);
 }

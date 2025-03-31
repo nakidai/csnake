@@ -2,10 +2,9 @@
 #include <stdlib.h>
 
 #include "input.h"
-#include "platform/thread.h"
 #include "platform/getch.h"
 
-ThreadR input(void *vargp)
+int input(void *vargp)
 {
     int *out = ((InputArgs *)vargp)->out;
     bool *alive = ((InputArgs *)vargp)->alive;
@@ -14,5 +13,5 @@ ThreadR input(void *vargp)
     {
         *out = getch();
     }
-    ThreadReturn;
+    return 0;
 }

@@ -2,8 +2,7 @@
 #define __INPUT_H__
 
 #include <stdbool.h>
-
-#include "platform/thread.h"
+#include <threads.h>
 
 typedef struct input_args_t
 {
@@ -11,6 +10,6 @@ typedef struct input_args_t
     bool *alive;
 } InputArgs;
 
-ThreadR input(void *vargp);
+int input(void *vargp);
 
 #endif /* __INPUT_H__ */

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <threads.h>
 #include <time.h>
 
 #include "input.h"
@@ -9,7 +10,6 @@
 #include "food.h"
 #include "config.h"
 #include "sleep.h"
-#include "platform/thread.h"
 #include "platform/screen.h"
 #include "platform/game.h"
 
@@ -44,7 +44,8 @@ int main(int argc, char **argv)
     bool stopped = false;
     int  head_x, head_y;
 
-    threadCreate(input, &(InputArgs){ &key, &running });
+    thrd_t inputthread;
+    thrd_create(&inputthread, input, &(InputArgs){ &key, &running });
     while (running)
     {
         screenSet(screen, ' ');
